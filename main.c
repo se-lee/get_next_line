@@ -6,12 +6,13 @@
 /*   By: selee <selee@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 13:55:01 by selee             #+#    #+#             */
-/*   Updated: 2021/02/25 15:28:06 by selee            ###   ########lyon.fr   */
+/*   Updated: 2021/03/02 09:47:17 by selee            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include <string.h>
+#include <stdio.h>
 
 int	main(void)
 {

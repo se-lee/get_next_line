@@ -6,7 +6,7 @@
 /*   By: selee <selee@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 09:50:01 by selee             #+#    #+#             */
-/*   Updated: 2021/02/25 16:16:06 by selee            ###   ########lyon.fr   */
+/*   Updated: 2021/03/02 15:21:59 by selee            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ char		*ft_strdup(const char *s1)
 char		*ft_strndup(const char *s1, size_t n)
 {
 	char	*str;
-	int		index;
+	size_t	index;
 
 	index = 0;
 	if (!(str = (char *)malloc(sizeof(char) * n + 1)))
@@ -77,26 +77,6 @@ char		*ft_strndup(const char *s1, size_t n)
 	}
 	str[index] = '\0';
 	return (str);
-}
-
-size_t		ft_strlcpy(char *restrict dst,
-		const char *restrict src, size_t destsize)
-{
-	size_t	i;
-
-	if (!dst || !src)
-		return (0);
-	if (destsize > 0)
-	{
-		i = 0;
-		while (src[i] && i < destsize - 1)
-		{
-			dst[i] = src[i];
-			i++;
-		}
-		dst[i] = '\0';
-	}
-	return (ft_strlen(src));
 }
 
 char		*ft_strjoin(char const *s1, char const *s2)
@@ -125,21 +105,4 @@ char		*ft_strjoin(char const *s1, char const *s2)
 	}
 	dst[len_all] = '\0';
 	return (dst);
-}
-
-void		*ft_calloc(size_t count, size_t size)
-{
-	size_t	index;
-	char 	*ptr;
-
-	index = 0;
-	ptr = malloc(count * size);
-	if (ptr == NULL)
-		return (NULL);
-	while (index < count)
-	{
-		ptr[index] = 0;
-		index++;
-	}
-	return (ptr);
 }
