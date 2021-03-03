@@ -6,7 +6,7 @@
 /*   By: selee <selee@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 09:50:01 by selee             #+#    #+#             */
-/*   Updated: 2021/03/02 15:21:59 by selee            ###   ########lyon.fr   */
+/*   Updated: 2021/03/03 14:41:40 by selee            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,3 +106,29 @@ char		*ft_strjoin(char const *s1, char const *s2)
 	dst[len_all] = '\0';
 	return (dst);
 }
+
+void		ft_bzero(void *s, size_t n)
+{
+	size_t	i;
+	char	*str;
+
+	i = 0;
+	str = s;
+	while (i < n)
+	{
+		str[i] = 0;
+		i++;
+	}
+}
+
+void		*ft_calloc(size_t count, size_t size)
+{
+	void *ptr;
+
+	ptr = malloc(count * size);
+	if (ptr == NULL)
+		return (NULL);
+	ft_bzero(ptr, size * count);
+	return (ptr);
+}
+
