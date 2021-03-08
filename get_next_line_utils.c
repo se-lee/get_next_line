@@ -6,7 +6,7 @@
 /*   By: selee <selee@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 09:50:01 by selee             #+#    #+#             */
-/*   Updated: 2021/03/03 14:41:40 by selee            ###   ########lyon.fr   */
+/*   Updated: 2021/03/08 10:32:29 by selee            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ char		*ft_strndup(const char *s1, size_t n)
 	size_t	index;
 
 	index = 0;
-	if (!(str = (char *)malloc(sizeof(char) * n + 1)))
+	if (!(str = (char *)malloc(sizeof(char) * n)))
 		return (NULL);
 	while (index < n)
 	{

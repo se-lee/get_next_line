@@ -6,7 +6,7 @@
 /*   By: selee <selee@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 09:47:22 by selee             #+#    #+#             */
-/*   Updated: 2021/03/03 14:39:46 by selee            ###   ########lyon.fr   */
+/*   Updated: 2021/03/08 16:05:56 by selee            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,12 @@
 # include <fcntl.h>
 # include <stdio.h>
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 32
+//# ifndef BUFFER_SIZE
+//#  define BUFFER_SIZE 32
+//# endif
+
+# ifndef OPEN_MAX
+#  define OPEN_MAX 32
 # endif
 
 int			get_next_line(int fd, char **line);
