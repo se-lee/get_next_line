@@ -6,7 +6,7 @@
 /*   By: selee <selee@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 09:47:22 by selee             #+#    #+#             */
-/*   Updated: 2021/03/08 16:05:56 by selee            ###   ########lyon.fr   */
+/*   Updated: 2021/03/09 11:49:07 by selee            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@
 # include <fcntl.h>
 # include <stdio.h>
 
-//# ifndef BUFFER_SIZE
-//#  define BUFFER_SIZE 32
-//# endif
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 50
+# endif
 
 # ifndef OPEN_MAX
 #  define OPEN_MAX 32
@@ -34,6 +34,7 @@ char		*ft_strdup(const char *s1);
 char		*ft_strndup(const char *s1, size_t n);
 size_t		ft_strlcpy(char *restrict dst,
 						const char *restrict src, size_t destsize);
+size_t	ft_strlcat(char *restrict dst, const char *restrict src, size_t dstsize);
 char		*ft_strjoin(char const *s1, char const *s2);
 void		*ft_calloc(size_t count, size_t size);
 void		ft_bzero(void *s, size_t n);

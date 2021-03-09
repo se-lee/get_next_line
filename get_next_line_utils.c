@@ -6,7 +6,7 @@
 /*   By: selee <selee@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 09:50:01 by selee             #+#    #+#             */
-/*   Updated: 2021/03/08 10:32:29 by selee            ###   ########lyon.fr   */
+/*   Updated: 2021/03/09 11:49:01 by selee            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,3 +132,46 @@ void		*ft_calloc(size_t count, size_t size)
 	return (ptr);
 }
 
+size_t	ft_strlcpy(char *restrict dst,
+			const char *restrict src, size_t destsize)
+{
+	size_t	i;
+
+	if (!dst || !src)
+		return (0);
+	if (destsize > 0)
+	{
+		i = 0;
+		while (src[i] && i < destsize - 1)
+		{
+			dst[i] = src[i];
+			i++;
+		}
+		dst[i] = '\0';
+	}
+	return (ft_strlen(src));
+}
+
+size_t	ft_strlcat(char *restrict dst, const char *restrict src, size_t dstsize)
+{
+	size_t	i;
+	size_t	j;
+	size_t	len_dst;
+	size_t	len_src;
+
+	i = 0;
+	j = 0;
+	len_dst = ft_strlen(dst);
+	len_src = ft_strlen(src);
+	if (dstsize == 0 || dstsize < len_dst)
+		return (dstsize + len_src);
+	while (dst[i] && i < dstsize)
+		i++;
+	while (src[j] && i + j + 1 < dstsize)
+	{
+		dst[i + j] = src[j];
+		j++;
+	}
+	dst[i + j] = '\0';
+	return (len_dst + len_src);
+}

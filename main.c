@@ -6,7 +6,7 @@
 /*   By: selee <selee@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 13:55:01 by selee             #+#    #+#             */
-/*   Updated: 2021/03/08 11:37:40 by selee            ###   ########lyon.fr   */
+/*   Updated: 2021/03/09 13:23:09 by selee            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,18 @@ int	main(void)
 	char	*line;
 	int		fd;
 
-	while (1)
+//	while (1)
+//	{
+	fd = open("your_file_name", O_RDONLY);
+	while (get_next_line(fd, &line) > 0)
 	{
-		fd = open("your_file_name", O_RDONLY);
-		while (get_next_line(fd, &line) > 0)
-		{
-			printf("main: %s\n", line);
-			free(line);
-			line = NULL;
-		}
-		printf("main2: %s\n", line);
+		printf("main: %s\n", line);
 		free(line);
-		line = NULL;
-		close(fd);
 	}
+	printf("main2: %s\n", line);
+	free(line);
+	line = NULL;
+	close(fd);
+//	}
 	return (0);
 }
