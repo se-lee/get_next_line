@@ -6,7 +6,7 @@
 /*   By: selee <selee@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 09:50:01 by selee             #+#    #+#             */
-/*   Updated: 2021/03/23 17:02:07 by selee            ###   ########lyon.fr   */
+/*   Updated: 2021/03/29 16:10:23 by selee            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,3 +106,4 @@ char		*ft_strjoin(char const *s1, char const *s2)
 	dst[len_all] = '\0';
 	return (dst);
 }
+
