@@ -6,7 +6,7 @@
 /*   By: selee <selee@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 09:50:01 by selee             #+#    #+#             */
-/*   Updated: 2021/03/29 16:10:23 by selee            ###   ########lyon.fr   */
+/*   Updated: 2021/04/05 15:20:15 by selee            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ size_t		ft_strlen(const char *s)
 	size_t	i;
 
 	i = 0;
-	while (s[i] != '\0')
+	while (s && s[i] != '\0')
 		i++;
 	return (i);
 }
@@ -68,7 +68,7 @@ char		*ft_strndup(const char *s1, size_t n)
 	size_t	index;
 
 	index = 0;
-	if (!(str = (char *)malloc(sizeof(char) * n)))
+	if (!(str = (char *)malloc(sizeof(char) * n + 1)))
 		return (NULL);
 	while (index < n)
 	{
@@ -79,7 +79,7 @@ char		*ft_strndup(const char *s1, size_t n)
 	return (str);
 }
 
-char		*ft_strjoin(char const *s1, char const *s2)
+char		*ft_strjoin(char *s1, char *s2)
 {
 	char	*dst;
 	size_t	i;

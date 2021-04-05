@@ -6,51 +6,66 @@
 /*   By: selee <selee@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 13:23:37 by selee             #+#    #+#             */
-/*   Updated: 2021/04/01 16:13:38 by selee            ###   ########lyon.fr   */
+/*   Updated: 2021/04/05 15:57:52 by selee            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
+char *ft_strjoin_free(char *s1, char *s2, int nb)
+{
+	char *dst;
+
+	dst = ft_strjoin(s1, s2);
+	if (nb == 1 || nb == 3)
+		free (s1);
+	if (nb == 2 || nb == 3)
+		free (s2);
+	return (dst);
+}
+
 int get_next_line(int fd, char **line)
 {
-	char	*temp;
+	char	*new_line;
 	char	buf[BUFFER_SIZE + 1];
 	static char	*store;
+	char 	*temp;
 	int		size_read;
 
 	if ((fd < 0) || (!line) || (BUFFER_SIZE < 0))
 		return (-1);
-	if (!store)
+	if (!(store))
 		store = ft_strdup("");
-	if (!(*line))
-		*line = ft_strdup("");		
 	size_read = read(fd, buf, BUFFER_SIZE);
-	if (size_read < 0 )
+	store = ft_strjoin_free(store, buf, 1);
+	if (size_read < 0)
 		return (-1);
-	while (size_read > 0)
+	new_line = NULL;
+	new_line = ft_strchr(store, '\n');
+	while (size_read > 0 && (!new_line))
 	{
-		temp = ft_strchr(buf, '\n');
-		if (!temp)
+		size_read = read(fd, buf, BUFFER_SIZE);
+		if (size_read > 0)
 		{
-			*line = buf;
-			return (1);
-		}
-		else if (temp)
-		{	
-			store = ft_strjoin(store, buf);
-			printf("store = %s\n", store);
-			*line = ft_strndup(store, store - buf);
-			printf("line = %s\n", *line);
-			free (store);
-			store = temp + 1;
-			printf("temp = %s\n", temp);
-		return (1);
+			store = ft_strjoin_free(store, buf, 1);
+			new_line = ft_strchr(store, '\n');
 		}
 	}
+	if (!(new_line))
+	{
+		*line = store;
+		return (0);
+	}
+	if (new_line)
+	{
+		*line = ft_strndup(store, (ft_strlen(store) - ft_strlen(new_line)));
+		temp = ft_strdup(new_line + 1);
+		if (store)
+			free (store);
+		store = temp;
+		return (1);
+	}
+	if (size_read < 0)
+		return (-1);
 	return (0);
 }
-
-// need a funtion to return the string (line) and the number altogether.
-// and a funtion to free
-
