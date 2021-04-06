@@ -6,7 +6,7 @@
 /*   By: selee <selee@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 09:47:22 by selee             #+#    #+#             */
-/*   Updated: 2021/04/05 15:58:26 by selee            ###   ########lyon.fr   */
+/*   Updated: 2021/04/06 11:36:18 by lucille          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <stdio.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1050
+#  define BUFFER_SIZE 10
 # endif
 
 # ifndef OPEN_MAX
