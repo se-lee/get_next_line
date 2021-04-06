@@ -6,7 +6,7 @@
 /*   By: seoyounglee <seoyounglee@student.42lyon    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 13:23:37 by selee             #+#    #+#             */
-/*   Updated: 2021/04/06 15:09:35 by seoyounglee      ###   ########lyon.fr   */
+/*   Updated: 2021/04/06 15:37:16 by seoyounglee      ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,16 @@ int get_next_line(int fd, char **line)
 		return (-1);
 	if (!(store))
 		store = ft_strdup("");
-	size_read = read(fd, buf, BUFFER_SIZE);
-	store = ft_strjoin_free(store, buf, 1);
-	if (size_read < 0)
-		return (-1);
+	size_read = 0;
+	while (size_read < BUFFER_SIZE)
+	{
+		buf[size_read] = 0;
+		size_read++;
+	}
 	temp = NULL;
 	new_line = ft_strchr(store, '\n');
+//	size_read = read(fd, buf, BUFFER_SIZE);
+	//	store = ft_strjoin_free(store, buf, 1);
 	while (size_read > 0 && (!new_line))
 	{
 		size_read = read(fd, buf, BUFFER_SIZE);
@@ -50,10 +54,16 @@ int get_next_line(int fd, char **line)
 			store = ft_strjoin_free(store, buf, 1);
 			new_line = ft_strchr(store, '\n');
 		}
+		else if (size_read < 0)
+		{
+			free(store);
+			return (-1);
+		}
 	}
 	if (!(new_line))
 	{
-		*line = store;
+		*line = ft_strdup(store);
+		free(store);
 		return (0);
 	}
 	if (new_line)
@@ -65,7 +75,5 @@ int get_next_line(int fd, char **line)
 		store = temp;
 		return (1);
 	}
-	if (size_read < 0)
-		return (-1);
 	return (0);
 }
