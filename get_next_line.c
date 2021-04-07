@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seoyounglee <seoyounglee@student.42lyon    +#+  +:+       +#+        */
+/*   By: selee <selee@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 13:23:37 by selee             #+#    #+#             */
-/*   Updated: 2021/04/06 15:54:52 by seoyounglee      ###   ########lyon.fr   */
+/*   Updated: 2021/04/07 13:31:35 by selee            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,17 +39,16 @@ int get_next_line(int fd, char **line)
 	size_read = 1;
 	temp = NULL;
 	new_line = ft_strchr(store, '\n');
-//	size_read = read(fd, buf, BUFFER_SIZE);
-	//	store = ft_strjoin_free(store, buf, 1);
 	while (size_read > 0 && (!new_line))
 	{
 		size_read = 0;
-		while (size_read < BUFFER_SIZE)
+		while (size_read < BUFFER_SIZE) //fill buf with zero;
 		{
 			buf[size_read] = 0;
 			size_read++;
 		}
-		size_read = read(fd, buf, BUFFER_SIZE);
+		size_read = read(fd, buf, BUFFER_SIZE); //read from fd and store into buf
+		buf[size_read] = '\0';
 		if (size_read > 0)
 		{
 			store = ft_strjoin_free(store, buf, 1);
