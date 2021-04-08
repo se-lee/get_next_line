@@ -6,51 +6,51 @@
 /*   By: selee <selee@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 09:50:01 by selee             #+#    #+#             */
-/*   Updated: 2021/04/05 15:20:15 by selee            ###   ########lyon.fr   */
+/*   Updated: 2021/04/08 14:28:06 by selee            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t		ft_strlen(const char *s)
+size_t	ft_strlen(const char *s)
 {
 	size_t	i;
 
+	if (!s)
+		return (0);
 	i = 0;
-	while (s && s[i] != '\0')
+	while (s[i] != '\0')
 		i++;
 	return (i);
 }
 
-char		*ft_strchr(char *s, int c)
+char	*ft_strchr(const char *s, int c)
 {
-	char	*ptr;
 	int		i;
 
+	if (!s)
+		return (NULL);
 	i = 0;
-	ptr = s;
-	while (ptr && ptr[i] != '\0')
+	while (s[i] != '\0')
 	{
-		if (*ptr == (unsigned char)c)
-			return (ptr);
-		ptr++;
+		if (s[i] == (unsigned char)c)
+			return ((char *)&s[i]);
+		i++;
 	}
-	if (ptr && c == '\0' && ptr[i] == '\0')
-		return (ptr);
+	if (c == '\0' && s[i] == '\0')
+		return ((char *)&s[i]);
 	return (NULL);
 }
 
-char		*ft_strdup(const char *s1)
+char	*ft_strdup(const char *s1)
 {
 	int		len_s1;
 	char	*str;
 	int		i;
 
-	i = 0;
-	while (s1 && s1[i] != '\0')
-		i++;
-	len_s1 = i;
-	if (!(str = (char *)malloc(sizeof(char) * len_s1 + 1)))
+	len_s1 = ft_strlen(s1);
+	str = (char *)malloc(sizeof(char) * (len_s1 + 1));
+	if (!str)
 		return (NULL);
 	i = 0;
 	while (i < len_s1)
@@ -62,26 +62,7 @@ char		*ft_strdup(const char *s1)
 	return (str);
 }
 
-char		*ft_strndup(const char *s1, size_t n)
-{
-	char	*str;
-	size_t	index;
-
-	index = 0;
-	if (!s1)
-		return (NULL);
-	if (!(str = (char *)malloc(sizeof(char) * n + 1)))
-		return (NULL);
-	while (index < n)
-	{
-		str[index] = s1[index];
-		index++;
-	}
-	str[index] = '\0';
-	return (str);
-}
-
-char		*ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin(const char *s1, const char *s2)
 {
 	char	*dst;
 	size_t	i;
@@ -90,16 +71,22 @@ char		*ft_strjoin(char *s1, char *s2)
 	if (!s1 || !s2)
 		return (NULL);
 	len_all = (ft_strlen(s1) + ft_strlen(s2) + 1);
-	if (!(dst = (char *)malloc(sizeof(char) * len_all)))
+	dst = (char *)malloc(sizeof(char) * len_all);
+	if (!dst)
 		return (NULL);
 	i = 0;
 	len_all = 0;
-	while (s1 && s1[i])
+	while (s1[i])
 		dst[len_all++] = s1[i++];
 	i = 0;
-	while (s2 && s2[i])
+	while (s2[i])
 		dst[len_all++] = s2[i++];
 	dst[len_all] = '\0';
 	return (dst);
 }
 
+void	clean_free(void **data)
+{
+	free(*data);
+	*data = NULL;
+}

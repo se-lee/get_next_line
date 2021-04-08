@@ -6,7 +6,7 @@
 /*   By: selee <selee@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 09:47:22 by selee             #+#    #+#             */
-/*   Updated: 2021/04/06 11:36:18 by lucille          ###   ########lyon.fr   */
+/*   Updated: 2021/04/08 14:30:57 by selee            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,24 +19,15 @@
 # include <stdio.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 10
+#  define BUFFER_SIZE 100000
 # endif
 
-# ifndef OPEN_MAX
-#  define OPEN_MAX 32
-# endif
+size_t	ft_strlen(const char *s);
+char	*ft_strchr(const char *s, int c);
+char	*ft_strdup(const char *s1);
+char	*ft_strjoin(const char *s1, const char *s2);
+void	clean_free(void **data);
 
-int			get_next_line(int fd, char **line);
-int			new_line_index(char *store);
-int			return_remainder(char **line, char **store, char *temp);
-char		*read_file(int fd, char **store, int *nl_index, int *size_read);
-size_t		ft_strlen(const char *s);
-char		*ft_strchr(char *s, int c);
-char		*ft_strdup(const char *s1);
-char		*ft_strndup(const char *s1, size_t n);
-char		*ft_strjoin(char *s1, char *s2);
-char		*ft_strjoin_free(char *s1, char *s2, int nb);
-
-
+int		get_next_line(int fd, char **line);
 
 #endif
